@@ -1,0 +1,171 @@
+@import url('https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600;700&family=Instrument+Serif:ital@0;1&display=swap');
+@import 'tailwindcss';
+
+/* Scan the shared design-system package for Tailwind class names. */
+@source '../../packages/ui/src/**/*.{ts,tsx}';
+
+/* Design tokens — brand color scale used by @at/ui components. */
+@theme {
+  --color-brand-50: #eef8f4;
+  --color-brand-100: #d9efe7;
+  --color-brand-200: #b7dfcf;
+  --color-brand-300: #83c7af;
+  --color-brand-400: #4ba98d;
+  --color-brand-500: #27856e;
+  --color-brand-600: #1a6b5a;
+  --color-brand-700: #145344;
+  --color-brand-800: #123f36;
+  --color-brand-900: #102f29;
+}
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  position: relative;
+  background: linear-gradient(160deg, #f7f5f0, #eef3f1 55%, #f4eff2);
+  color: #14211d;
+  font-family: 'Hanken Grotesk', ui-sans-serif, system-ui, sans-serif;
+}
+
+body::before,
+body::after {
+  position: fixed;
+  z-index: -1;
+  border-radius: 9999px;
+  content: '';
+  filter: blur(70px);
+  opacity: 0.72;
+  pointer-events: none;
+}
+
+body::before {
+  width: 42rem;
+  height: 42rem;
+  top: -14rem;
+  left: -10rem;
+  background: radial-gradient(circle at 32% 32%, #ffd3bd, transparent 68%);
+}
+
+body::after {
+  width: 38rem;
+  height: 38rem;
+  right: -10rem;
+  bottom: -12rem;
+  background: radial-gradient(circle at 32% 32%, #bfe3ff, transparent 68%);
+}
+
+/* ---------------------------------------------------------------------------
+   Motion system — shared entrance/feedback animations.
+   Usage: .anim-fade-up on any element; add .anim-d1…d6 to stagger siblings.
+--------------------------------------------------------------------------- */
+@keyframes fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes scale-in {
+  from {
+    opacity: 0;
+    transform: scale(0.97);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes shimmer {
+  from {
+    background-position: -60rem 0;
+  }
+  to {
+    background-position: 60rem 0;
+  }
+}
+
+@keyframes float-slow {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0);
+  }
+  50% {
+    transform: translate3d(0, -18px, 0);
+  }
+}
+
+.anim-fade-up {
+  animation: fade-up 0.55s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.anim-scale-in {
+  animation: scale-in 0.4s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.anim-float {
+  animation: float-slow 9s ease-in-out infinite;
+}
+
+.anim-d1 { animation-delay: 60ms; }
+.anim-d2 { animation-delay: 120ms; }
+.anim-d3 { animation-delay: 180ms; }
+.anim-d4 { animation-delay: 240ms; }
+.anim-d5 { animation-delay: 300ms; }
+.anim-d6 { animation-delay: 360ms; }
+
+/* Skeleton shimmer used by loading states. */
+.skeleton {
+  border-radius: 14px;
+  background: linear-gradient(
+    100deg,
+    rgba(255, 255, 255, 0.45) 30%,
+    rgba(255, 255, 255, 0.85) 50%,
+    rgba(255, 255, 255, 0.45) 70%
+  );
+  background-size: 120rem 100%;
+  animation: shimmer 1.6s linear infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .anim-fade-up,
+  .anim-scale-in,
+  .anim-float,
+  .skeleton {
+    animation: none;
+  }
+}
+
+@layer base {
+  h1,
+  h2 {
+    font-family: 'Instrument Serif', Georgia, serif;
+    font-weight: 400 !important;
+    letter-spacing: -0.015em;
+    color: #14211d;
+  }
+
+  h1 {
+    font-size: clamp(2.4rem, 5vw, 3.25rem) !important;
+    line-height: 1.02;
+  }
+
+  table thead {
+    background: rgba(255, 255, 255, 0.3);
+  }
+
+  table tbody tr {
+    transition: background-color 150ms ease;
+  }
+
+  table tbody tr:hover {
+    background: rgba(255, 255, 255, 0.5);
+  }
+}
