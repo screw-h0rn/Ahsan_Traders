@@ -1,0 +1,11 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "ahsan-traders-web",
+      "runtimeExecutable": "pnpm",
+      "runtimeArgs": ["--filter", "@at/web", "dev"],
+      "port": 3000
+    }
+  ]
+}

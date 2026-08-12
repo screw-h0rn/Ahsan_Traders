@@ -1,0 +1,11 @@
+packages:
+  - "web"
+  - "shared"
+  - "packages/*"
+
+# pnpm 10 blocks lifecycle build scripts by default; allow-list trusted ones here.
+onlyBuiltDependencies:
+  - sharp
+
+ignoredBuiltDependencies:
+  - unrs-resolver

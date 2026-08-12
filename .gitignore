@@ -1,0 +1,54 @@
+# Dependencies
+node_modules/
+.pnp
+.pnp.*
+.yarn/*
+
+# Build outputs
+dist/
+build/
+.next/
+out/
+*.tsbuildinfo
+next-env.d.ts
+
+# Environment & secrets (server-side only — never commit)
+.env
+.env.*
+!.env.example
+*.local
+
+# Supabase
+backend/supabase/.branches
+backend/supabase/.temp
+backend/supabase/.env
+
+# Logs
+*.log
+npm-debug.log*
+pnpm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Testing / coverage
+coverage/
+.nyc_output/
+
+# Editor / OS
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/*
+!.vscode/extensions.json
+!.vscode/settings.json
+
+# Misc
+*.pem
+.turbo/
+.vercel/
+
+# Claude Code local settings
+.claude/settings.local.json
+
+# Secrets that slipped past the dot-prefixed patterns above.
+backend/env
