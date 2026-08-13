@@ -6,17 +6,20 @@ import { assertSupabaseEnv, publicEnv } from '../env';
 type CookieToSet = { name: string; value: string; options: CookieOptions };
 
 /** Paths reachable without an authenticated session. */
-const PUBLIC_PATHS = ['/', '/login', '/forgot-password', '/reset-password'];
+const PUBLIC_PATHS = ['/', '/privacy', '/login', '/forgot-password', '/reset-password'];
 /** Auth pages an authenticated user should be redirected away from. */
 const AUTH_PATHS = ['/login', '/forgot-password'];
 
 function isPublic(pathname: string): boolean {
+  // Normalize trailing slashes so "/privacy/" and "/privacy" match.
+  const normalized = pathname === '/' ? pathname : pathname.replace(/\/+$/, '');
+
   // /api/* routes are NOT gated here — each one enforces its own access
   // control (e.g. customer-signup is deliberately reachable by a signed-out
   // shopkeeper; anything needing a staff session checks for one itself using
   // requirePermission(), same as a server action would).
   return (
-    PUBLIC_PATHS.includes(pathname) || pathname.startsWith('/auth') || pathname.startsWith('/api/')
+    PUBLIC_PATHS.includes(normalized) || normalized.startsWith('/auth') || normalized.startsWith('/api/')
   );
 }
 
