@@ -49,6 +49,9 @@ export default function LoginPage() {
             />
           </div>
           <SubmitButton className="mt-2 w-full">Sign in</SubmitButton>
+          <div className="mt-3 text-center text-sm">
+            <Link href="/" className="text-brand-600 hover:underline">Register New Tenant</Link>
+          </div>
         </form>
       </CardContent>
     </Card>
